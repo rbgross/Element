@@ -12,12 +12,11 @@
 *
 * Placeholder.
 ***************************************************************************************************/
-Light::Light( System* system ) {
-	this->system = system;
+Light::Light( void ) {
 	this->lightPos = glm::vec4( 0.0f, 1.0f, 1.0f, 0.0f );
 
 	// Assign the value for the light position in world space
-	this->system->renderer->setLightPos( this->lightPos );
+	Global::system->renderer->setLightPos( this->lightPos );
 }
 
 /***************************************************************************************************

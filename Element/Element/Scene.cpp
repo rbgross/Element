@@ -12,11 +12,10 @@
 *
 * Placeholder.
 ***************************************************************************************************/
-Scene::Scene( System* system ) {
-	this->system = system;
-	this->camera = new Camera( this->system );
-	this->light = new Light( this->system );
-	this->actor = new Actor( this->system );
+Scene::Scene( void ) {
+	this->camera = new Camera();
+	this->light = new Light();
+	this->actor = new Actor();
 }
 
 /***************************************************************************************************

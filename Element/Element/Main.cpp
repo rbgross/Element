@@ -12,7 +12,8 @@
 * Placeholder.
 ***************************************************************************************************/
 int main( int argc, char* argv[] ) {	
-	System* system = new System();
-	system->run();
-	delete system;
+	Global::system = new System();
+	Global::system->init();
+	Global::system->run();
+	delete Global::system;
 }

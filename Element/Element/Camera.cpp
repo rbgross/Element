@@ -12,14 +12,13 @@
 *
 * Placeholder.
 ***************************************************************************************************/
-Camera::Camera( System* system ) {
-	this->system = system;
+Camera::Camera( void ) {
 	this->upDirection = glm::vec3( 0.0f, 1.0f, 0.0f );
 	this->viewDirection = glm::vec3( 0.0f, 0.0f, 0.0f );
 	
 	// Assign the value for the view matrix
 	this->view = glm::lookAt( glm::vec3( 0.0f, 0.0f, 10.0f ), this->viewDirection, this->upDirection );
-	this->system->renderer->setView( this->view );
+	Global::system->renderer->setView( this->view );
 }
 
 /***************************************************************************************************

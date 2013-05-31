@@ -13,9 +13,9 @@
 * Placeholder.
 ***************************************************************************************************/
 System::System( void ) {
-	this->renderer = new Renderer( this );
-	this->input = new Input( this );
-	this->scene = new Scene( this );
+	this->renderer = NULL;
+	this->input = NULL;
+	this->scene = NULL;
 }
 
 /***************************************************************************************************
@@ -27,6 +27,17 @@ System::~System( void ) {
 	delete this->scene;
 	delete this->input;
 	delete this->renderer;
+}
+
+/***************************************************************************************************
+* init function
+*
+* Placeholder.
+***************************************************************************************************/
+void System::init( void ) {
+	this->renderer = new Renderer();
+	this->input = new Input();
+	this->scene = new Scene();
 }
 
 /***************************************************************************************************

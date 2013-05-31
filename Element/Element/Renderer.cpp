@@ -12,9 +12,7 @@
 *
 * Placeholder.
 ***************************************************************************************************/
-Renderer::Renderer( System* system ) {
-	this->system = system;
-	
+Renderer::Renderer( void ) {	
 	this->windowWidth = 1024;
 	this->windowHeight = 768;
 
@@ -155,7 +153,7 @@ void Renderer::draw( void ) {
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
 	// Draw the scene
-	this->system->scene->draw();
+	Global::system->scene->draw();
 
 	// Get the viewpoint coordinates of the mouse cursor (0:width, height:0)
 	int mouseX;
@@ -178,7 +176,7 @@ void Renderer::draw( void ) {
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
 	// Draw the scene
-	this->system->scene->draw();
+	Global::system->scene->draw();
 		
 	// Swap the buffers
 	glfwSwapBuffers();

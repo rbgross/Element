@@ -43,50 +43,20 @@ class Component;
 // Component class definition
 class Component {
 	private:
-		System* system;
 	public:
-		Component( System* );
+		Component( void );
 		~Component( void );
 		void update( void );
-		void draw( void );
-};
-
-// Cube class definition
-class Actor {
-	private:
-		System* system;
-		unsigned int objectID;
-		Transform* transform;
-		Mesh* mesh;
-	public:
-		Actor( System* );
-		~Actor( void );
-		virtual void update( void );
 		void draw( void );
 };
 
 // Light class definition
 class Light {
 	private:
-		System* system;
 		glm::vec4 lightPos;
 	public:
-		Light( System* );
+		Light( void );
 		~Light( void );
-		void update( void );
-		void draw( void );
-};
-
-// Scene class definition
-class Scene {
-	private:
-		System* system;
-		Camera* camera;
-		Light* light;
-		Actor* actor;
-	public:
-		Scene( System* );
-		~Scene( void );
 		void update( void );
 		void draw( void );
 };
@@ -94,7 +64,6 @@ class Scene {
 // Camera class definition
 class Camera {
 	private:
-		System* system;
 		glm::mat4 view;
 		glm::vec3 viewDirection;
 		glm::vec3 upDirection;
@@ -104,7 +73,7 @@ class Camera {
 		float nearClipPlane;
 		float farClipPlane;
 	public:
-		Camera( System* );
+		Camera( void );
 		~Camera( void );
 		void update( void );
 		void draw( void );
@@ -140,6 +109,32 @@ class Mesh {
 		void draw( void );
 };
 
+// Actor class definition
+class Actor {
+	private:
+		unsigned int actorID;
+		Transform* transform;
+		Mesh* mesh;
+	public:
+		Actor( void );
+		~Actor( void );
+		virtual void update( void );
+		void draw( void );
+};
+
+// Scene class definition
+class Scene {
+	private:
+		Camera* camera;
+		Light* light;
+		Actor* actor;
+	public:
+		Scene( void );
+		~Scene( void );
+		void update( void );
+		void draw( void );
+};
+
 // Shader class definition
 class Shader {
 	private:
@@ -161,7 +156,6 @@ class Shader {
 // Renderer class definition
 class Renderer {
 	private:
-		System* system;
 		Shader* colorShader;
 		Shader* pickingShader;
 		GLuint pickingFrameBuffer;
@@ -177,7 +171,7 @@ class Renderer {
 		glm::vec3 diffCol;
 		int objectIndex;
 	public:
-		Renderer( System* );
+		Renderer( void );
 		~Renderer( void );
 		void setModel( glm::mat4 );
 		void setView( glm::mat4 );
@@ -195,9 +189,8 @@ class Renderer {
 // Input class definition
 class Input {
 	private:
-		System* system;
 	public:
-		Input( System* );
+		Input( void );
 		~Input( void );
 		void pollInput( void );
 };
@@ -210,5 +203,10 @@ class System {
 		Input* input;
 		System( void );
 		~System( void );
+		void init( void );
 		void run( void );
 };
+
+namespace Global {
+	extern System* system;
+}
