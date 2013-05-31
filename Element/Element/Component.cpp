@@ -1,32 +1,28 @@
-/*******************************************************************************
-* Object.cpp
+/***************************************************************************************************
+* Component.cpp
 *
 * Placeholder.
-*******************************************************************************/
+***************************************************************************************************/
 
 /* INCLUDES */
 #include "ElementHeader.h"
 
 /***************************************************************************************************
-* Object function
+* Component function
 *
 * Placeholder.
 ***************************************************************************************************/
-Object::Object( System* system ) {
+Component::Component( System* system ) {
 	this->system = system;
-	this->objectID = 1;
-	this->transform = new Transform();
-	this->mesh = new Mesh( "C:\\Users\\Ryan\\Game Tests\\CubeTest2.obj" );
 }
 
 /***************************************************************************************************
-* ~Object function
+* ~Component function
 *
 * Placeholder.
 ***************************************************************************************************/
-Object::~Object( void ) {
-	delete this->transform;
-	delete this->mesh;
+Component::~Component( void ) {
+
 }
 
 /***************************************************************************************************
@@ -34,8 +30,8 @@ Object::~Object( void ) {
 *
 * Placeholder.
 ***************************************************************************************************/
-void Object::update( void ) {
-	
+void Component::update( void ) {
+
 }
 
 /***************************************************************************************************
@@ -43,10 +39,6 @@ void Object::update( void ) {
 *
 * Placeholder.
 ***************************************************************************************************/
-void Object::draw( void ) {
-	// Calculate and apply the Object model transformation
-	this->system->renderer->setModel( this->transform->model );
-	this->system->renderer->setObjectIndex( this->objectID );
-	this->system->renderer->setDiffCol( glm::vec3( 0.0f, 0.5f, 1.0f ) );
-	this->mesh->draw();
+void Component::draw( void ) {
+
 }

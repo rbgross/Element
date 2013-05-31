@@ -136,7 +136,11 @@ void Renderer::setObjectIndex( int objectIndex ) {
 * Placeholder.
 ***************************************************************************************************/
 bool Renderer::windowOpen( void ) {	
-	return glfwGetWindowParam( GLFW_OPENED );
+	if ( glfwGetWindowParam( GLFW_OPENED ) ) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 /***************************************************************************************************

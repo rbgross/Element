@@ -53,11 +53,14 @@
     <ClCompile Include="System.cpp">
       <Filter>Core Files</Filter>
     </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>Core Files</Filter>
-    </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Core Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Core Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Component Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,5 @@
 /*******************************************************************************
-* Scene.cpp
+* Actor.cpp
 *
 * Placeholder.
 *******************************************************************************/
@@ -8,26 +8,25 @@
 #include "ElementHeader.h"
 
 /***************************************************************************************************
-* Scene function
+* Actor function
 *
 * Placeholder.
 ***************************************************************************************************/
-Scene::Scene( System* system ) {
+Actor::Actor( System* system ) {
 	this->system = system;
-	this->camera = new Camera( this->system );
-	this->light = new Light( this->system );
-	this->actor = new Actor( this->system );
+	this->objectID = 1;
+	this->transform = new Transform();
+	this->mesh = new Mesh( "C:\\Users\\Ryan\\Game Tests\\CubeTest2.obj" );
 }
 
 /***************************************************************************************************
-* ~Puzzle function
+* ~Actor function
 *
 * Placeholder.
 ***************************************************************************************************/
-Scene::~Scene( void ) {
-	delete this->actor;
-	delete this->light;
-	delete this->camera;
+Actor::~Actor( void ) {
+	delete this->transform;
+	delete this->mesh;
 }
 
 /***************************************************************************************************
@@ -35,10 +34,8 @@ Scene::~Scene( void ) {
 *
 * Placeholder.
 ***************************************************************************************************/
-void Scene::update( void ) {
-	this->camera->update();
-	this->light->update();
-	this->actor->update();
+void Actor::update( void ) {
+	
 }
 
 /***************************************************************************************************
@@ -46,6 +43,10 @@ void Scene::update( void ) {
 *
 * Placeholder.
 ***************************************************************************************************/
-void Scene::draw( void ) {
-	this->actor->draw();
+void Actor::draw( void ) {
+	// Calculate and apply the Actor model transformation
+	this->system->renderer->setModel( this->transform->model );
+	this->system->renderer->setObjectIndex( this->objectID );
+	this->system->renderer->setDiffCol( glm::vec3( 0.0f, 0.5f, 1.0f ) );
+	this->mesh->draw();
 }

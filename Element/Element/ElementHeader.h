@@ -37,19 +37,31 @@ class Transform;
 class Scene;
 class Camera;
 class Light;
-class Object;
+class Actor;
+class Component;
 
-// Cube class definition
-class Object {
+// Component class definition
+class Component {
 	private:
 		System* system;
-		int objectID;
+	public:
+		Component( System* );
+		~Component( void );
+		void update( void );
+		void draw( void );
+};
+
+// Cube class definition
+class Actor {
+	private:
+		System* system;
+		unsigned int objectID;
 		Transform* transform;
 		Mesh* mesh;
 	public:
-		Object( System* );
-		~Object( void );
-		void update( void );
+		Actor( System* );
+		~Actor( void );
+		virtual void update( void );
 		void draw( void );
 };
 
@@ -71,7 +83,7 @@ class Scene {
 		System* system;
 		Camera* camera;
 		Light* light;
-		Object* object;
+		Actor* actor;
 	public:
 		Scene( System* );
 		~Scene( void );
