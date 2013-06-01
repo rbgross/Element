@@ -46,23 +46,21 @@ class Component {
 	public:
 		Component( void );
 		~Component( void );
-		void update( void );
-		void draw( void );
+		virtual void update( void ) = NULL;
 };
 
 // Light class definition
-class Light {
+class Light: Component {
 	private:
 		glm::vec4 lightPos;
 	public:
 		Light( void );
 		~Light( void );
 		void update( void );
-		void draw( void );
 };
 
 // Camera class definition
-class Camera {
+class Camera: Component {
 	private:
 		glm::mat4 view;
 		glm::vec3 viewDirection;
@@ -76,11 +74,10 @@ class Camera {
 		Camera( void );
 		~Camera( void );
 		void update( void );
-		void draw( void );
 };
 
 // Transform class definition
-class Transform {
+class Transform: Component {
 	private:
 	public:
 		glm::mat4 model;
@@ -90,11 +87,10 @@ class Transform {
 		Transform( void );
 		~Transform( void );
 		void update( void );
-		void draw( void );
 };
 
 // Mesh class definition
-class Mesh {
+class Mesh: Component {
 	private:
 		GLuint vao;
 		GLuint vbo;
@@ -207,6 +203,7 @@ class System {
 		void run( void );
 };
 
+// GLOBAL VARIABLES
 namespace Global {
 	extern System* system;
 }
