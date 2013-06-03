@@ -54,15 +54,6 @@ Mesh::~Mesh( void ) {
 }
 
 /***************************************************************************************************
-* update function
-*
-* Placeholder.
-***************************************************************************************************/
-void Mesh::update( void ) {
-	
-}
-
-/***************************************************************************************************
 * draw function
 *
 * Placeholder.
@@ -112,7 +103,7 @@ void Mesh::loadModel( std::string fileName ) {
 			texCoords.push_back( v );
 		} else if ( token == "f" ) {
 			unsigned int v, t, n;
-			int pos;
+			std::streamoff pos;
 			for ( unsigned int i = 0; i < 3; i++ ) {
 				s >> v;
 				pos = s.tellg();

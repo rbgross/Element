@@ -14,8 +14,6 @@
 ***************************************************************************************************/
 Actor::Actor( void ) {
 	this->actorID = 1;
-	this->transform = new Transform();
-	this->mesh = new Mesh( "C:\\Users\\Ryan\\Game Tests\\CubeTest2.obj" );
 }
 
 /***************************************************************************************************
@@ -24,8 +22,18 @@ Actor::Actor( void ) {
 * Placeholder.
 ***************************************************************************************************/
 Actor::~Actor( void ) {
-	delete this->transform;
-	delete this->mesh;
+	for ( unsigned int i = 0; i < this->components.size(); i++ ) {
+		delete this->components[ i ];
+	}
+}
+
+/***************************************************************************************************
+* addComponent function
+*
+* Placeholder.
+***************************************************************************************************/
+void Actor::addComponent( Component* component ) {
+	this->components.push_back( component );
 }
 
 /***************************************************************************************************
@@ -44,8 +52,8 @@ void Actor::update( void ) {
 ***************************************************************************************************/
 void Actor::draw( void ) {
 	// Calculate and apply the Actor model transformation
-	Global::system->renderer->setModel( this->transform->model );
+	Global::system->renderer->setModel( ( ( Transform* ) this->components[ 0 ] )->model );
 	Global::system->renderer->setObjectIndex( this->actorID );
 	Global::system->renderer->setDiffCol( glm::vec3( 0.0f, 0.5f, 1.0f ) );
-	this->mesh->draw();
+	( ( Mesh* ) this->components[ 1 ] )->draw();
 }

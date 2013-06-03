@@ -45,22 +45,20 @@ class Component {
 	private:
 	public:
 		Component( void );
-		~Component( void );
-		virtual void update( void ) = NULL;
+		virtual ~Component( void );
 };
 
 // Light class definition
-class Light: Component {
+class Light: public Component {
 	private:
 		glm::vec4 lightPos;
 	public:
 		Light( void );
 		~Light( void );
-		void update( void );
 };
 
 // Camera class definition
-class Camera: Component {
+class Camera: public Component {
 	private:
 		glm::mat4 view;
 		glm::vec3 viewDirection;
@@ -73,11 +71,10 @@ class Camera: Component {
 	public:
 		Camera( void );
 		~Camera( void );
-		void update( void );
 };
 
 // Transform class definition
-class Transform: Component {
+class Transform: public Component {
 	private:
 	public:
 		glm::mat4 model;
@@ -86,11 +83,10 @@ class Transform: Component {
 		glm::vec3 scale;
 		Transform( void );
 		~Transform( void );
-		void update( void );
 };
 
 // Mesh class definition
-class Mesh: Component {
+class Mesh: public Component {
 	private:
 		GLuint vao;
 		GLuint vbo;
@@ -101,7 +97,6 @@ class Mesh: Component {
 	public:
 		Mesh( std::string );
 		~Mesh( void );
-		void update( void );
 		void draw( void );
 };
 
@@ -109,11 +104,11 @@ class Mesh: Component {
 class Actor {
 	private:
 		unsigned int actorID;
-		Transform* transform;
-		Mesh* mesh;
+		std::vector< Component* > components;
 	public:
 		Actor( void );
-		~Actor( void );
+		virtual ~Actor( void );
+		void addComponent( Component* );
 		virtual void update( void );
 		void draw( void );
 };
@@ -121,9 +116,9 @@ class Actor {
 // Scene class definition
 class Scene {
 	private:
-		Camera* camera;
-		Light* light;
-		Actor* actor;
+		Actor* camera;
+		Actor* light;
+		Actor* cube;
 	public:
 		Scene( void );
 		~Scene( void );

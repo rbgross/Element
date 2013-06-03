@@ -13,9 +13,13 @@
 * Placeholder.
 ***************************************************************************************************/
 Scene::Scene( void ) {
-	this->camera = new Camera();
-	this->light = new Light();
-	this->actor = new Actor();
+	this->camera = new Actor();
+	this->camera->addComponent( new Camera() );
+	this->light = new Actor();
+	this->light->addComponent( new Light() );
+	this->cube = new Actor();
+	this->cube->addComponent( new Transform() );
+	this->cube->addComponent( new Mesh( "C:\\Users\\Ryan\\Game Tests\\CubeTest2.obj" ) );
 }
 
 /***************************************************************************************************
@@ -24,7 +28,7 @@ Scene::Scene( void ) {
 * Placeholder.
 ***************************************************************************************************/
 Scene::~Scene( void ) {
-	delete this->actor;
+	delete this->cube;
 	delete this->light;
 	delete this->camera;
 }
@@ -35,9 +39,7 @@ Scene::~Scene( void ) {
 * Placeholder.
 ***************************************************************************************************/
 void Scene::update( void ) {
-	this->camera->update();
-	this->light->update();
-	this->actor->update();
+	this->cube->update();
 }
 
 /***************************************************************************************************
@@ -46,5 +48,5 @@ void Scene::update( void ) {
 * Placeholder.
 ***************************************************************************************************/
 void Scene::draw( void ) {
-	this->actor->draw();
+	this->cube->draw();
 }

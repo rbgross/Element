@@ -59,10 +59,13 @@
     <ClCompile Include="Actor.cpp">
       <Filter>Core Files</Filter>
     </ClCompile>
+    <ClCompile Include="Globals.cpp">
+      <Filter>Core Files</Filter>
+    </ClCompile>
     <ClCompile Include="Component.cpp">
       <Filter>Component Files</Filter>
     </ClCompile>
-    <ClCompile Include="Globals.cpp">
+    <ClCompile Include="Timer.cpp">
       <Filter>Core Files</Filter>
     </ClCompile>
   </ItemGroup>

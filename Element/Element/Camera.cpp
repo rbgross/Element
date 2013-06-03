@@ -17,7 +17,7 @@ Camera::Camera( void ) {
 	this->viewDirection = glm::vec3( 0.0f, 0.0f, 0.0f );
 	
 	// Assign the value for the view matrix
-	this->view = glm::lookAt( glm::vec3( 0.0f, 0.0f, 10.0f ), this->viewDirection, this->upDirection );
+	this->view = glm::lookAt( glm::vec3( 10.0f, 10.0f, 10.0f ), this->viewDirection, this->upDirection );
 	Global::system->renderer->setView( this->view );
 }
 
@@ -27,14 +27,5 @@ Camera::Camera( void ) {
 * Placeholder.
 ***************************************************************************************************/
 Camera::~Camera( void ) {
-
-}
-
-/***************************************************************************************************
-* update function
-*
-* Placeholder.
-***************************************************************************************************/
-void Camera::update( void ) {
 
 }
