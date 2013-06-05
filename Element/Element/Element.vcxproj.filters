@@ -68,6 +68,9 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Core Files</Filter>
     </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Component Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ADS.vert">

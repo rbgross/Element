@@ -13,6 +13,7 @@
 #include <ctime>
 #include <algorithm> 
 #include <vector>
+#include <map>
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
 #include <gtc/type_ptr.hpp>
@@ -44,23 +45,28 @@ class Mesh;
 // Component class definition
 class Component {
 	private:
+	protected:
 	public:
+		Actor* owner;
 		Component( void );
 		virtual ~Component( void );
+		virtual void setup( Actor* ) = NULL;
 };
 
 // Light class definition
 class Light: public Component {
 	private:
-		glm::vec4 lightPos;
 	public:
+		bool local;
 		Light( void );
 		~Light( void );
+		void setup( Actor* );
 };
 
 // Camera class definition
 class Camera: public Component {
 	private:
+	public:
 		glm::mat4 view;
 		glm::vec3 viewDirection;
 		glm::vec3 upDirection;
@@ -69,9 +75,9 @@ class Camera: public Component {
 		float aspectRatio;
 		float nearClipPlane;
 		float farClipPlane;
-	public:
 		Camera( void );
 		~Camera( void );
+		void setup( Actor* );
 };
 
 // Transform class definition
@@ -84,32 +90,36 @@ class Transform: public Component {
 		glm::vec3 scale;
 		Transform( void );
 		~Transform( void );
+		void setup( Actor* );
 };
 
 // Mesh class definition
 class Mesh: public Component {
 	private:
+	public:
 		GLuint vao;
 		GLuint vbo;
 		GLuint ebo;
 		std::vector< float > meshData;
 		std::vector< GLuint > elements;
 		void loadModel( std::string );
-	public:
 		Mesh( std::string );
 		~Mesh( void );
+		void setup( Actor* );
 		void draw( void );
 };
 
 // Actor class definition
 class Actor {
 	private:
-		unsigned int actorID;
-		std::vector< Component* > components;
 	public:
+		unsigned int actorID;
+		std::map< std::string, Component* > components;
 		Actor( void );
 		virtual ~Actor( void );
-		void addComponent( Component* );
+		virtual void setup( void );
+		void addComponent( std::string, Component* );
+		Component* getComponent( std::string );
 		virtual void update( void );
 		void draw( void );
 };
@@ -117,10 +127,10 @@ class Actor {
 // Scene class definition
 class Scene {
 	private:
+	public:
 		Actor* camera;
 		Actor* light;
 		Actor* cube;
-	public:
 		Scene( void );
 		~Scene( void );
 		void update( void );

@@ -13,7 +13,7 @@
 * Placeholder.
 ***************************************************************************************************/
 Actor::Actor( void ) {
-	this->actorID = 1;
+	
 }
 
 /***************************************************************************************************
@@ -22,8 +22,18 @@ Actor::Actor( void ) {
 * Placeholder.
 ***************************************************************************************************/
 Actor::~Actor( void ) {
-	for ( unsigned int i = 0; i < this->components.size(); i++ ) {
-		delete this->components[ i ];
+	this->components.clear();
+}
+
+/***************************************************************************************************
+* setup function
+*
+* Placeholder.
+***************************************************************************************************/
+void Actor::setup( void ) {
+	std::map< std::string, Component* >::iterator i;
+	for ( i = this->components.begin(); i != this->components.end(); i++ ) {
+		i->second->setup( this );
 	}
 }
 
@@ -32,8 +42,17 @@ Actor::~Actor( void ) {
 *
 * Placeholder.
 ***************************************************************************************************/
-void Actor::addComponent( Component* component ) {
-	this->components.push_back( component );
+void Actor::addComponent( std::string type, Component* component ) {
+	this->components.insert( std::pair< std::string, Component* >( type, component ) );
+}
+
+/***************************************************************************************************
+* getComponent function
+*
+* Placeholder.
+***************************************************************************************************/
+Component* Actor::getComponent( std::string type ) {
+	return this->components.find( type )->second;
 }
 
 /***************************************************************************************************
@@ -52,7 +71,7 @@ void Actor::update( void ) {
 ***************************************************************************************************/
 void Actor::draw( void ) {
 	// Calculate and apply the Actor model transformation
-	Global::system->renderer->setModel( ( ( Transform* ) this->components[ 0 ] )->model );
-	Global::system->renderer->setDiffCol( glm::vec3( 0.0f, 0.5f, 1.0f ) );
-	( ( Mesh* ) this->components[ 1 ] )->draw();
+	Global::system->renderer->setModel( ( ( Transform* ) this->getComponent( "transform" ) )->model );
+	Global::system->renderer->setDiffCol( glm::vec3( 0.25f, 0.5f, 1.0f ) );
+	( ( Mesh* ) this->getComponent( "mesh" ) )->draw();
 }

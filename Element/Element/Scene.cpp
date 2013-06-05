@@ -14,12 +14,18 @@
 ***************************************************************************************************/
 Scene::Scene( void ) {
 	this->camera = new Actor();
-	this->camera->addComponent( new Camera() );
+	this->camera->addComponent( "transform", new Transform() );
+	this->camera->addComponent( "camera", new Camera() );
 	this->light = new Actor();
-	this->light->addComponent( new Light() );
+	this->light->addComponent( "transform", new Transform() );
+	this->light->addComponent( "light", new Light() );
 	this->cube = new Actor();
-	this->cube->addComponent( new Transform() );
-	this->cube->addComponent( new Mesh( "C:\\Users\\Ryan\\Game Tests\\CubeTest2.obj" ) );
+	this->cube->addComponent( "transform", new Transform() );
+	this->cube->addComponent( "mesh", new Mesh( "C:\\Users\\Ryan\\Game Tests\\CubeTest2.obj" ) );
+
+	this->camera->setup();
+	this->light->setup();
+	this->cube->setup();
 }
 
 /***************************************************************************************************

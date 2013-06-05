@@ -24,3 +24,12 @@ Transform::Transform( void ) {
 Transform::~Transform( void ) {
 
 }
+
+/***************************************************************************************************
+* setup function
+*
+* Placeholder.
+***************************************************************************************************/
+void Transform::setup( Actor* owner ) {
+	this->owner = owner;
+}

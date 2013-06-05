@@ -105,6 +105,22 @@ void Renderer::draw( void ) {
 	glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
+	if ( glfwGetKey( 'W' ) == GLFW_PRESS ) {
+		( ( Transform* ) Global::system->scene->cube->getComponent( "transform" ) )->model = glm::translate( ( ( Transform* ) Global::system->scene->cube->getComponent( "transform" ) )->model, glm::vec3( 0.0f, 0.0f, -0.1f ) ); 
+	}
+
+	if ( glfwGetKey( 'S' ) == GLFW_PRESS ) {
+		( ( Transform* ) Global::system->scene->cube->getComponent( "transform" ) )->model = glm::translate( ( ( Transform* ) Global::system->scene->cube->getComponent( "transform" ) )->model, glm::vec3( 0.0f, 0.0f, 0.1f ) ); 
+	}
+
+	if ( glfwGetKey( 'A' ) == GLFW_PRESS ) {
+		( ( Transform* ) Global::system->scene->cube->getComponent( "transform" ) )->model = glm::translate( ( ( Transform* ) Global::system->scene->cube->getComponent( "transform" ) )->model, glm::vec3( -0.1f, 0.0f, 0.0f ) ); 
+	}
+
+	if ( glfwGetKey( 'D' ) == GLFW_PRESS ) {
+		( ( Transform* ) Global::system->scene->cube->getComponent( "transform" ) )->model = glm::translate( ( ( Transform* ) Global::system->scene->cube->getComponent( "transform" ) )->model, glm::vec3( 0.1f, 0.0f, 0.0f ) ); 
+	}
+
 	// Draw the scene
 	Global::system->scene->draw();
 		
