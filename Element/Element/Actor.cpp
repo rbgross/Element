@@ -53,7 +53,6 @@ void Actor::update( void ) {
 void Actor::draw( void ) {
 	// Calculate and apply the Actor model transformation
 	Global::system->renderer->setModel( ( ( Transform* ) this->components[ 0 ] )->model );
-	Global::system->renderer->setObjectIndex( this->actorID );
 	Global::system->renderer->setDiffCol( glm::vec3( 0.0f, 0.5f, 1.0f ) );
 	( ( Mesh* ) this->components[ 1 ] )->draw();
 }

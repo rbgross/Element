@@ -30,15 +30,16 @@
 /* CLASS DEFINITIONS */
 class System;
 class Input;
+class Timer;
 class Renderer;
 class Shader;
-class Mesh;
-class Transform;
 class Scene;
-class Camera;
-class Light;
 class Actor;
 class Component;
+class Transform;
+class Camera;
+class Light;
+class Mesh;
 
 // Component class definition
 class Component {
@@ -148,19 +149,9 @@ class Shader {
 class Renderer {
 	private:
 		Shader* colorShader;
-		Shader* pickingShader;
-		GLuint pickingFrameBuffer;
 		int windowWidth;
 		int windowHeight;
-		int activeShader;
 		bool initialize( void );
-
-		glm::mat4 model;
-		glm::mat4 view;
-		glm::mat4 proj;
-		glm::vec4 lightPos;
-		glm::vec3 diffCol;
-		int objectIndex;
 	public:
 		Renderer( void );
 		~Renderer( void );
@@ -169,12 +160,8 @@ class Renderer {
 		void setProj( glm::mat4 );
 		void setLightPos( glm::vec4 );
 		void setDiffCol( glm::vec3 );
-		void setObjectIndex( int );
 		bool windowOpen( void );
 		void draw( void );
-		void usePickingShader( void );
-		void useColorShader( void );
-		void createPickingFrameBuffer( void );
 };
 
 // Input class definition
